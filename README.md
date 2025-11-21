@@ -1,74 +1,87 @@
-# Redmine Projects Treeview plugin
-This [Redmine](http://redmine.org/) plugin allows you to show up your projects as a tree. 
+# Redmine Project Tree (Standalone Plugin for Redmine 6)
 
-Initially, only the root projects are determined and displayed in projects overview. This can be helpful when Redmine hosts many projects including sub projects where the fetching and rendering takes a considerable amount of time.
+A modern, standalone version of the original *Redmine Project Tree*
+plugin --- rebuilt for **Redmine 6.0** and designed specifically for
+environments with **large, deeply nested project structures**.
 
-If a root project has sub projects, then they can be lazy loaded via mouse click. 
+## 🌳 Core Idea
 
-For this plugin a new REST resource `/projects/:id/children` was introduced, which determines and delivers the available children of given project in JSON format:  
+Redmine installations with hundreds or even thousands of projects
+quickly become hard to navigate - especially when these projects are
+deeply nested.
+This plugin solves that problem by providing:
 
-```json
-{
-  "children": [
-    {
-      "id": 7,
-      "name": "MySubProject_01",
-      "identifier": "mysubproject_01",
-      "has_children": true
-    },
-    {
-      "id": 8,
-      "name": "MySubProject_02",
-      "identifier": "mysubproject_02",
-      "has_children": false
-    },
-    {
-      "id": 9,
-      "name": "MySubProject_03",
-      "identifier": "mysubproject_03",
-      "has_children": false
-    },
-    {
-      "id": 10,
-      "name": "MySubProject_04",
-      "identifier": "mysubproject_04",
-      "has_children": false
-    }
-  ]
-}
+-   **An interactive, lazily loaded project tree**
+    → Only the parts of the tree you expand are loaded
+-   **Smooth navigation even with very large hierarchies**
+    → No performance issues when expanding deep structures
+-   **A clear, hierarchical overview at a glance**
+    → Much more usable than Redmine's built-in parent/child lists
+
+## ✨ Features
+
+-   Adds a **dedicated top-level navigation item** ("Project Tree")
+    → leaves Redmine's standard project overview intact
+-   Lazy loading of subtrees for **fast performance**
+-   Clean, interactive visualization of project relations
+-   Updated to work reliably with **Redmine 6.0 / Rails 7**
+-   English and German localization
+
+## 🧩 Background
+
+This plugin is based on:
+
+> [UweHeber/redmine-project-tree-plugin](https://github.com/UweHeber/redmine-project-tree-plugin)
+> Originally developed for Redmine **3.x**
+
+This fork:
+
+-   modernizes the codebase
+-   makes the plugin standalone
+-   restores compatibility with Redmine 6
+-   improves performance for very large project hierarchies
+
+## 🚀 Installation
+
+1.  Clone into your Redmine `plugins/` directory:
+
+``` bash
+cd redmine/plugins
+git clone <your-fork-url> project_tree
 ```
- 
-The response of this REST resource is used within AJAX call, to manipulate the DOM tree via jQuery.
 
-## Screenshots
-![alt text][screenshot]
+2.  Restart Redmine:
 
-## Redmine Compatible
-The plugin is compatible with Redmine 3.2.X 
+``` bash
+touch ../tmp/restart.txt
+```
 
+3.  A new tab **"Project Tree"** will appear in each project.
 
-## Installation and Setup
-Please apply general instructions for Redmine plugins [here](http://www.redmine.org/wiki/redmine/Plugins).
+## 🖥 Usage
 
-Following steps are required to install the plugin:
-1.  Clone this repository to your Redmine instance as `plugins/project_tree`:
+Navigate to:
 
-    `$ git clone https://github.com/UweHeber/redmine-project-tree-plugin plugins/project_tree`
-    
-    The name is important, because of the way the Redmine plugin system works.
- 2. Finally restart your Redmine instance.
- 
-## License 
- This plugin is licensed under the MIT license. See LICENSE for details.
+    Project → Project Tree
 
-## Special Thanks
-Special thanks go to [Matthias](http://petermann-it.de) for his feedback and support in finding an optimal approach to load sub-projects lazy and testing support.
+Each level expands **on demand**, allowing fast browsing of large
+hierarchies without rendering the entire tree at once.
 
-## Contributing
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+## 🌍 Localization
 
-[screenshot]: http://heber.it/images/github/redmine-projects-tree.png "Screen shot - Redmine Projects Treeview plugin"
+-   English (`en.yml`)
+-   German (`de.yml`)
+
+## 🛠 Development
+
+Setup helper script:
+
+``` bash
+scripts/setup-dev-environment.sh
+```
+
+Detailed notes in `DEVELOPMENT.md`.
+
+## 📜 License
+
+See the included `LICENSE` file.

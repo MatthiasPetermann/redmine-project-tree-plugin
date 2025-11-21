@@ -1,0 +1,62 @@
+<%# ---------------------------------------------------------------------------
+    Header assets
+    - Includes plugin-specific CSS and JavaScript for the project tree
+    - Exposes the path to the SVG icon sprite via a global variable
+   --------------------------------------------------------------------------- %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'project_tree', plugin: 'project_tree' %>
+  <%= javascript_include_tag 'project_tree', plugin: 'project_tree' %>
+
+  <script>
+    // Global URL for project tree icons (e.g., angle-right arrow)
+    window.projectTreeIconsUrl = "<%= asset_path('icons.svg') %>";
+  </script>
+<% end %>
+
+<%# ---------------------------------------------------------------------------
+    Localized UI texts for toggling subprojects
+    These are injected into JavaScript variables for use in client-side logic.
+   --------------------------------------------------------------------------- %>
+<script>
+  var titleHideSubProjects = "<%= j l(:title_project_link_hide_subprojects) %>";
+  var titleShowSubProjects = "<%= j l(:title_project_link_show_subprojects) %>";
+</script>
+
+<%# ---------------------------------------------------------------------------
+    Project Tree Root List
+    Renders the list of top-level projects. For each project:
+    - If it has children, display a collapsible toggle arrow.
+    - If not, display a spacer to keep alignment consistent.
+   --------------------------------------------------------------------------- %>
+
+<h2><%= l(:label_project_plural) %></h2>
+
+<ul class="tree">
+  <% @top_projects.each do |project| %>
+
+    <% if project.children.any? %>
+      <%# Project with children → add collapsible toggle %>
+      <li class="project root parent">
+        <span class="toggle collapsed"
+              data-id="<%= project.id %>"
+              title="<%= l(:title_project_link_show_subprojects) %>">
+
+          <svg class="s18 icon-svg">
+            <use href="<%= asset_path('icons.svg') %>#icon--angle-right"></use>
+          </svg>
+
+        </span>
+
+        <%= link_to_project(project) %>
+      </li>
+
+    <% else %>
+      <%# Project without children → alignment spacer only %>
+      <li class="project root parent">
+        <span class="spacer"></span>
+        <%= link_to_project(project) %>
+      </li>
+    <% end %>
+
+  <% end %>
+</ul>
