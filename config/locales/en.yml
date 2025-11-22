@@ -1,6 +1,4 @@
-# Redmine German translation:
-# by Uwe Heber
-
 en:
-  title_project_link_show_subprojects: "Show sub project(s)"
-  title_project_link_hide_subprojects: "Hide sub project(s)"
+  title_project_link_show_subprojects: "Show sub projects"
+  title_project_link_hide_subprojects: "Hide sub projects"
+  label_project_tree: "Project tree"

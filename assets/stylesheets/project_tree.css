@@ -1,0 +1,84 @@
+/* -----------------------------------------------------------------------------
+   Copyright 2018-2025 Matthias Petermann, Uwe Heber
+
+   Project TreeView Stylesheet
+   Provides structural and visual styling for the hierarchical project tree.
+
+   Sections:
+   - General tree structure
+   - Toggle button (uses Redmine’s SVG icons)
+   - Spacers for leaf nodes
+   - Indentation and spacing rules for root/child nodes
+   ----------------------------------------------------------------------------- */
+
+
+/* =========================================
+   General Tree Structure
+   ========================================= */
+
+ul.tree,
+ul.tree ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 20px; /* Indentation for child nodes */
+}
+
+/* Vertical spacing for root-level entries */
+ul.tree > li {
+    margin: 4px 0;
+}
+
+
+/* =========================================
+   Toggle Button (SVG from Redmine)
+   ========================================= */
+
+ul.tree li span.toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+
+    margin-right: 4px;
+    cursor: pointer;
+
+    /* No backgrounds or borders */
+    background: none !important;
+    border: none !important;
+
+    vertical-align: middle;
+}
+
+/* The SVG icon inside a toggle */
+ul.tree li span.toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor; /* inherits text color */
+}
+
+
+/* =========================================
+   Placeholder for Leaf Nodes
+   ========================================= */
+
+ul.tree li span.spacer {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 4px;
+}
+
+
+/* =========================================
+   Improved Indentation for Child Projects
+   ========================================= */
+
+ul.tree li.project.child {
+    margin-top: 3px;
+}
+
+ul.tree li.project.root {
+    margin-bottom: 2px;
+}
