@@ -1,7 +1,7 @@
 # Redmine Project Tree (Standalone Plugin for Redmine 6)
 
 A modern, standalone version of the original *Redmine Project Tree*
-plugin --- rebuilt for **Redmine 6.0** and designed specifically for
+plugin - rebuilt for **Redmine 6.0** and designed specifically for
 environments with **large, deeply nested project structures**.
 
 ## 🌳 Core Idea
@@ -47,7 +47,7 @@ This fork:
 
 ``` bash
 cd redmine/plugins
-git clone <your-fork-url> project_tree
+git clone https://github.com/MatthiasPetermann/redmine-project-tree-plugin.git project_tree
 ```
 
 2.  Restart Redmine:
@@ -56,13 +56,13 @@ git clone <your-fork-url> project_tree
 touch ../tmp/restart.txt
 ```
 
-3.  A new tab **"Project Tree"** will appear in each project.
+3.  A new tab **"Project Tree"** top menu item will appear.
 
 ## 🖥 Usage
 
 Navigate to:
 
-    Project → Project Tree
+    Project Tree
 
 Each level expands **on demand**, allowing fast browsing of large
 hierarchies without rendering the entire tree at once.
